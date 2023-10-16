@@ -1,7 +1,7 @@
 import Toybox.Graphics;
 import Toybox.WatchUi;
 
-class RubikWatchTimerView extends WatchUi.View {
+class TimerView extends WatchUi.View {
 
     function initialize() {
         View.initialize();
@@ -9,7 +9,7 @@ class RubikWatchTimerView extends WatchUi.View {
 
     // Load your resources here
     function onLayout(dc as Dc) as Void {
-        setLayout(Rez.Layouts.MainLayout(dc));
+        setLayout(Rez.Layouts.Timer(dc));
     }
 
     // Called when this View is brought to the foreground. Restore

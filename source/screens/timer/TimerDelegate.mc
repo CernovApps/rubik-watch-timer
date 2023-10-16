@@ -1,14 +1,14 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
 
-class RubikWatchTimerDelegate extends WatchUi.BehaviorDelegate {
+class TimerDelegate extends WatchUi.BehaviorDelegate {
 
     function initialize() {
         BehaviorDelegate.initialize();
     }
 
     function onSelect() as Boolean {
-        WatchUi.pushView(new Rez.Menus.MainMenu(), new MainMenuDelegate(), WatchUi.SLIDE_UP);
+        System.println("start");
         return true;
     }
 }

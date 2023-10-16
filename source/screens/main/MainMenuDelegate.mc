@@ -10,14 +10,13 @@ class MainMenuDelegate extends WatchUi.MenuInputDelegate {
 
     function onMenuItem(item as Symbol) as Void {
         if (item == :start) {
-            // TODO fix
-            System.println("start");
+            WatchUi.pushView(new TimerView(), new TimerDelegate(), WatchUi.SLIDE_UP);
         } else if (item == :times) {
             // TODO fix
             System.println("times");
         } else if (item == :stats) {
             // TODO fix
-            WatchUi.pushView(new RubikWatchTimerView(), new RubikWatchTimerDelegate(), WatchUi.SLIDE_UP);
+            System.println("stats");
         } else if (item == :reset) {
             // TODO fix
             System.println("reset");
