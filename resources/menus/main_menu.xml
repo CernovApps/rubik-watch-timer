@@ -1,0 +1,6 @@
+<menu id="MainMenu">
+    <menu-item id="start" label="@Strings.start" />
+    <menu-item id="times" label="@Strings.times" />
+    <menu-item id="stats" label="@Strings.stats" />
+    <menu-item id="reset" label="@Strings.reset" />
+</menu>

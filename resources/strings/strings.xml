@@ -1,0 +1,8 @@
+<strings>
+    <string id="AppName">RubikWatchTimer</string>
+
+    <string id="start">start</string>
+    <string id="times">times</string>
+    <string id="stats">stats</string>
+    <string id="reset">reset</string>
+</strings>
