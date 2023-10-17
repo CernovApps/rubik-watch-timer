@@ -14,7 +14,6 @@ class TimerDelegate extends WatchUi.BehaviorDelegate {
     function onKeyPressed(keyEvent as WatchUi.KeyEvent) as Boolean {
         _isPressingKey = true;
         if (keyEvent.getKey() == KEY_ENTER) {
-            System.println("Going to pressedEnter");
             return _view.pressedEnter();
         }
         return false;
@@ -26,6 +25,7 @@ class TimerDelegate extends WatchUi.BehaviorDelegate {
             // still pressing the button that triggered this screen
             return false;
         }
+        _isPressingKey = false;
         if (keyEvent.getKey() == KEY_ENTER) {
             return _view.releasedEnter();
         }

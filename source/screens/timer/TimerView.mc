@@ -2,10 +2,13 @@ import Toybox.Graphics;
 import Toybox.WatchUi;
 import Toybox.System;
 import Toybox.Lang;
+import Toybox.Timer;
 
 class TimerView extends WatchUi.View {
-    // TODO trigger timer
     var state as TimerViewState = BEGIN;
+
+    var inspectionTimer = new Timer.Timer();
+    var inspectionTime = 15;
 
     private var _actionLabel;
     private var _inspectLabel;
@@ -44,6 +47,7 @@ class TimerView extends WatchUi.View {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() as Void {
+        inspectionTimer.stop();
     }
 
     function pressedEnter() as Boolean {
@@ -90,7 +94,10 @@ class TimerView extends WatchUi.View {
         _actionLabel.setColor(Graphics.COLOR_WHITE);
         _inspectLabel.setVisible(true);
         _timeLabel.setVisible(true);
-        _timeLabel.setText("15");
+        _timeLabel.setText(inspectionTime.format("%d"));
+        inspectionTimer = new Timer.Timer();
+        inspectionTimer.start(method(:inspectionTimerCallback), 1000, true);
+
         WatchUi.requestUpdate();
     }
 
@@ -116,6 +123,17 @@ class TimerView extends WatchUi.View {
         _actionLabel.setVisible(false);
         _yourTimeLabel.setVisible(true);
         WatchUi.requestUpdate();
+    }
+
+    // Timer functions
+    function inspectionTimerCallback() as Void {
+        if (inspectionTime > 0) {
+            inspectionTime -= 1;
+            _timeLabel.setText(inspectionTime.format("%d"));
+            WatchUi.requestUpdate();
+        } else {
+            inspectionTimer.stop();
+        }
     }
 }
 
