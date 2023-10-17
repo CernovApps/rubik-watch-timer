@@ -9,6 +9,8 @@ class TimerView extends WatchUi.View {
 
     var inspectionTimer = new Timer.Timer();
     var inspectionTime = 15;
+    var assembleTimer = new Timer.Timer();
+    var assembleTime = 0.0;
 
     private var _actionLabel;
     private var _inspectLabel;
@@ -48,6 +50,7 @@ class TimerView extends WatchUi.View {
     // memory.
     function onHide() as Void {
         inspectionTimer.stop();
+        assembleTimer.stop();
     }
 
     function pressedEnter() as Boolean {
@@ -116,12 +119,17 @@ class TimerView extends WatchUi.View {
         _timeLabel.setText("1.34");
         _timeLabel.setColor(Graphics.COLOR_WHITE);
         _inspectLabel.setVisible(false);
+
+        inspectionTimer.stop();
+        assembleTimer.start(method(:assembleTimerCallback), 50, true);
         WatchUi.requestUpdate();
     }
 
     function startEnd() as Void {
         _actionLabel.setVisible(false);
         _yourTimeLabel.setVisible(true);
+
+        assembleTimer.stop();
         WatchUi.requestUpdate();
     }
 
@@ -134,6 +142,12 @@ class TimerView extends WatchUi.View {
         } else {
             inspectionTimer.stop();
         }
+    }
+
+    function assembleTimerCallback() as Void {
+        assembleTime += 0.05;
+        _timeLabel.setText(assembleTime.format("%.02f"));
+        WatchUi.requestUpdate();
     }
 }
 
