@@ -11,6 +11,8 @@ class TimerView extends WatchUi.View {
     var inspectionTime = 15;
     var assembleTimer = new Timer.Timer();
     var assembleTime = 0.0;
+    var assembleSyncTimer = new Timer.Timer();
+    var assembleStart as Number?;
 
     private var _actionLabel;
     private var _inspectLabel;
@@ -51,6 +53,7 @@ class TimerView extends WatchUi.View {
     function onHide() as Void {
         inspectionTimer.stop();
         assembleTimer.stop();
+        assembleSyncTimer.stop();
     }
 
     function pressedEnter() as Boolean {
@@ -121,7 +124,9 @@ class TimerView extends WatchUi.View {
         _inspectLabel.setVisible(false);
 
         inspectionTimer.stop();
-        assembleTimer.start(method(:assembleTimerCallback), 50, true);
+        assembleTimer.start(method(:assembleTimerCallback), 60, true);
+        assembleStart = secondsFromBeginOfDay();
+        assembleSyncTimer.start(method(:assembleSyncTimerCallback), 1000, true);
         WatchUi.requestUpdate();
     }
 
@@ -145,9 +150,16 @@ class TimerView extends WatchUi.View {
     }
 
     function assembleTimerCallback() as Void {
-        assembleTime += 0.05;
+        assembleTime += 0.09;
         _timeLabel.setText(assembleTime.format("%.02f"));
         WatchUi.requestUpdate();
+    }
+
+    function assembleSyncTimerCallback() as Void {
+        // Only having the assembleTimerCallback being called was causing a cumulative error
+        // delaying the timer. This function syncs every second with the real value.
+        var currentTime = secondsFromBeginOfDay();
+        assembleTime = currentTime - assembleStart;
     }
 }
 
