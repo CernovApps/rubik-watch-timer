@@ -144,6 +144,12 @@ class TimerView extends WatchUi.View {
             inspectionTime -= 1;
             _timeLabel.setText(inspectionTime.format("%d"));
             WatchUi.requestUpdate();
+
+            if (inspectionTime == 7) {
+                vibrate(50, [300]);
+            } else if (inspectionTime == 3) {
+                vibrate(50, [200, 200, 200]);
+            }
         } else {
             inspectionTimer.stop();
         }
