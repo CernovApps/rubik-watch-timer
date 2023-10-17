@@ -1,3 +1,35 @@
 <layout id="Timer">
-    <bitmap id="id_monkey" x="center" y="0" filename="../drawables/monkey.png" />
+
+    <label
+        id="action_label"
+        text="hold"
+        x="90%"
+        y="20%"
+        justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        font="Graphics.FONT_TINY" />
+
+    <label
+        id="inspect_label"
+        text="inspect"
+        x="center"
+        y="bottom"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_TINY" />
+
+    <label
+        id="time_label"
+        text="66.66"
+        x="center"
+        y="center"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_MEDIUM" />
+
+    <label
+        id="your_time_label"
+        text="your time"
+        x="center"
+        y="20%"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_LARGE" />
+
 </layout>
