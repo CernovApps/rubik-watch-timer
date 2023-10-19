@@ -14,12 +14,14 @@ class MainMenuDelegate extends WatchUi.MenuInputDelegate {
             WatchUi.pushView(timerView, new TimerDelegate(timerView), WatchUi.SLIDE_UP);
         } else if (item == :times) {
             // TODO fix
-            System.println("times");
+            var times = TimesRepository.getInstance().getTimes();
+            System.println(times.toString());
         } else if (item == :stats) {
             // TODO fix
             System.println("stats");
         } else if (item == :reset) {
             // TODO fix
+            TimesRepository.getInstance().reset();
             System.println("reset");
         }
     }

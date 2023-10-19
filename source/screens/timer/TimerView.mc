@@ -10,7 +10,7 @@ class TimerView extends WatchUi.View {
     var inspectionTimer = new Timer.Timer();
     var inspectionTime = 15;
     var assembleTimer = new Timer.Timer();
-    var assembleTime = 0.0;
+    var assembleTime as Float = 0.0f;
     var assembleSyncTimer = new Timer.Timer();
     var assembleStart as Number?;
 
@@ -32,7 +32,7 @@ class TimerView extends WatchUi.View {
         _timeLabel = findDrawableById("time_label");
         _yourTimeLabel = findDrawableById("your_time_label");
 
-        startBegin();
+        switchStateToBegin();
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -58,13 +58,13 @@ class TimerView extends WatchUi.View {
 
     function pressedEnter() as Boolean {
         if (state == BEGIN) {
-            startBeginHold();
+            switchStateToBeginHold();
             return true;
         } else if (state == INSPECTION) {
-            startInspectionHold();
+            switchStateToInspectionHold();
             return true;
         } else if (state == TIMER) {
-            startEnd();
+            switchStateToEnd();
             return true;
         } else {
             return false;
@@ -73,29 +73,29 @@ class TimerView extends WatchUi.View {
 
     function releasedEnter() as Boolean {
         if (state == BEGIN_HOLD) {
-            startInspection();
+            switchStateToInspection();
             return true;
         } else if (state == INSPECTION_HOLD) {
-            startTimer();
+            switchStateToTimer();
             return true;
         } else {
             return false;
         }
     }
 
-    function startBegin() as Void {
+    function switchStateToBegin() as Void {
         _inspectLabel.setVisible(false);
         _timeLabel.setVisible(false);
         _yourTimeLabel.setVisible(false);
     }
 
-    function startBeginHold() as Void {
+    function switchStateToBeginHold() as Void {
         state = BEGIN_HOLD;
         _actionLabel.setColor(Graphics.COLOR_GREEN);
         WatchUi.requestUpdate();
     }
 
-    function startInspection() as Void {
+    function switchStateToInspection() as Void {
         state = INSPECTION;
         _actionLabel.setColor(Graphics.COLOR_WHITE);
         _inspectLabel.setVisible(true);
@@ -107,14 +107,14 @@ class TimerView extends WatchUi.View {
         WatchUi.requestUpdate();
     }
 
-    function startInspectionHold() as Void {
+    function switchStateToInspectionHold() as Void {
         state = INSPECTION_HOLD;
         _actionLabel.setColor(Graphics.COLOR_GREEN);
         _timeLabel.setColor(Graphics.COLOR_GREEN);
         WatchUi.requestUpdate();
     }
 
-    function startTimer() as Void {
+    function switchStateToTimer() as Void {
         state = TIMER;
         _actionLabel.setColor(Graphics.COLOR_WHITE);
         _actionLabel.setVisible(true);
@@ -130,12 +130,15 @@ class TimerView extends WatchUi.View {
         WatchUi.requestUpdate();
     }
 
-    function startEnd() as Void {
+    function switchStateToEnd() as Void {
+        state = END;
         _actionLabel.setVisible(false);
         _yourTimeLabel.setVisible(true);
 
         assembleTimer.stop();
         WatchUi.requestUpdate();
+
+        TimesRepository.getInstance().pushTime(assembleTime);
     }
 
     // Timer functions
@@ -165,7 +168,7 @@ class TimerView extends WatchUi.View {
         // Only having the assembleTimerCallback being called was causing a cumulative error
         // delaying the timer. This function syncs every second with the real value.
         var currentTime = secondsFromBeginOfDay();
-        assembleTime = currentTime - assembleStart;
+        assembleTime = (currentTime - assembleStart).toFloat();
     }
 }
 
