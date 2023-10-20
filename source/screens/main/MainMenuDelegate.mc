@@ -13,9 +13,8 @@ class MainMenuDelegate extends WatchUi.MenuInputDelegate {
             var timerView = new TimerView();
             WatchUi.pushView(timerView, new TimerDelegate(timerView), WatchUi.SLIDE_UP);
         } else if (item == :times) {
-            // TODO fix
-            var times = TimesRepository.getInstance().getTimes();
-            System.println(times.toString());
+            var timesView = new TimesView();
+            WatchUi.pushView(timesView, new TimesDelegate(timesView), WatchUi.SLIDE_UP);
         } else if (item == :stats) {
             // TODO fix
             System.println("stats");

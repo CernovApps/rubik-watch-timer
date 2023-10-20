@@ -1,0 +1,38 @@
+<layout id="Times">
+    <label
+        id="time1_label"
+        text="66.66"
+        x="center"
+        y="21%"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_SMALL" />
+    <label
+        id="time2_label"
+        text="66.66"
+        x="center"
+        y="33%"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_SMALL" />
+    <label
+        id="time3_label"
+        text="&gt; 66.66 &lt;"
+        x="center"
+        y="45%"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_SMALL"
+        color="Graphics.COLOR_GREEN" />
+    <label
+        id="time4_label"
+        text="66.66"
+        x="center"
+        y="57%"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_SMALL" />
+    <label
+        id="time5_label"
+        text="66.66"
+        x="center"
+        y="69%"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_SMALL" />
+</layout>
