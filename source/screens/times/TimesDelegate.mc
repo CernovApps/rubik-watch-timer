@@ -9,6 +9,11 @@ class TimesDelegate extends WatchUi.BehaviorDelegate {
         BehaviorDelegate.initialize();
     }
 
+    function onSelect() as Boolean {
+        _view.selected();
+        return true;
+    }
+
     function onNextPage() as Boolean {
         _view.goDown();
         return true;

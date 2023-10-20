@@ -32,6 +32,13 @@ class TimesRepository {
     Storage.setValue(TIMES_STORAGE_KEY, times);
   }
 
+  function deleteTime(index as Number) as Array<Float> {
+    var times = getTimes();
+    var result = times.slice(0, index).addAll(times.slice(index+1, null));
+    Storage.setValue(TIMES_STORAGE_KEY, result);    
+    return result;
+  }
+
   function reset() as Void {
     Storage.deleteValue(TIMES_STORAGE_KEY);
   }

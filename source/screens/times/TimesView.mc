@@ -55,6 +55,15 @@ class TimesView extends WatchUi.View {
         renderLabels();
     }
 
+    function selected() as Void {
+        // TODO show confirmation before removing
+        times = TimesRepository.getInstance().deleteTime(cursor);
+        if (cursor >= times.size()) {
+            cursor = times.size() - 1;
+        }
+        renderLabels();
+    }
+
     function renderLabels() as Void {
         if (cursor >= 2) {
             labels[0].setText("...");
