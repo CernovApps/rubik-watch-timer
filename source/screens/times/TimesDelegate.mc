@@ -8,4 +8,14 @@ class TimesDelegate extends WatchUi.BehaviorDelegate {
         _view = view;
         BehaviorDelegate.initialize();
     }
+
+    function onNextPage() as Boolean {
+        _view.goDown();
+        return true;
+    }
+
+    function onPreviousPage() as Boolean {
+        _view.goUp();
+        return true;
+    }
 }
