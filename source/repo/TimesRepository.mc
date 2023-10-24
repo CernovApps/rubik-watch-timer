@@ -42,4 +42,18 @@ class TimesRepository {
   function reset() as Void {
     Storage.deleteValue(TIMES_STORAGE_KEY);
   }
+
+  function getStats() as Dictionary<String, Float or Null> {
+    return {
+      "best" => 10.01,
+      "worst" => 12.34,
+      "average" => 10.34,
+      "avg5" => 10.11,
+      "3of5" => 10.12,
+      "best3of5" => 10.13,
+      "avg12" => 11.11,
+      "10of12" => 11.12,
+      "best10of12" => 11.13
+    };
+  }
 }
