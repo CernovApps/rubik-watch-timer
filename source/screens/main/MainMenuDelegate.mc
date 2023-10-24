@@ -16,8 +16,8 @@ class MainMenuDelegate extends WatchUi.MenuInputDelegate {
             var timesView = new TimesView();
             WatchUi.pushView(timesView, new TimesDelegate(timesView), WatchUi.SLIDE_UP);
         } else if (item == :stats) {
-            // TODO fix
-            System.println("stats");
+            var loop = new WatchUi.ViewLoop(new StatsLoopFactory(), {:wrap => true});
+            WatchUi.pushView(loop, new ViewLoopDelegate(loop), WatchUi.SLIDE_IMMEDIATE);
         } else if (item == :reset) {
             var resetView = new ResetView();
             WatchUi.pushView(resetView, new ResetDelegate(resetView), WatchUi.SLIDE_UP);
