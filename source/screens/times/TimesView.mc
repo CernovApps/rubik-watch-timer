@@ -56,6 +56,9 @@ class TimesView extends WatchUi.View {
     }
 
     function selected() as Void {
+        if (cursor == -1) {
+            return;
+        }
         var confirmView = new ConfirmView();
         var delegate = new ConfirmDelegate(
             confirmView,
@@ -74,6 +77,17 @@ class TimesView extends WatchUi.View {
     }
 
     function renderLabels() as Void {
+        if (cursor == -1) {
+            labels[0].setText("");
+            labels[1].setText("");
+            labels[3].setText("");
+            labels[4].setText("");
+
+            labels[2].setText("no times");
+            labels[2].setColor(Graphics.COLOR_WHITE);
+            return;
+        }
+
         if (cursor >= 2) {
             labels[0].setText("...");
         } else {
