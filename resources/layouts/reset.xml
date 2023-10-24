@@ -1,0 +1,9 @@
+<layout id="Reset">
+    <label
+        id="main_label"
+        text="Reset times?"
+        x="center"
+        y="center"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_MEDIUM" />
+</layout>

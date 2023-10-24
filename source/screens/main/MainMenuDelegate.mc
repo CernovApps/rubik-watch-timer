@@ -19,9 +19,8 @@ class MainMenuDelegate extends WatchUi.MenuInputDelegate {
             // TODO fix
             System.println("stats");
         } else if (item == :reset) {
-            // TODO fix
-            TimesRepository.getInstance().reset();
-            System.println("reset");
+            var resetView = new ResetView();
+            WatchUi.pushView(resetView, new ResetDelegate(resetView), WatchUi.SLIDE_UP);
         }
     }
 }
