@@ -44,16 +44,36 @@ class TimesRepository {
   }
 
   function getStats() as Dictionary<String, Float or Null> {
+    var times = getTimes();
+    if (times.size() == 0) {
+      return {};
+    }
+    var best = times[0];
+    var worst = times[0];
+    var avg = 0.0;
+
+    for (var i = 0; i < times.size(); i++) {
+      var num = times[i];
+      if (num < best) {
+        best = num;
+      }
+      if (num > worst) {
+        worst = num;
+      }
+      avg += num;
+    }
+    avg /= times.size();
+
     return {
-      "best" => 10.01,
-      "worst" => 12.34,
-      "average" => 10.34,
-      "avg5" => 10.11,
-      "3of5" => 10.12,
-      "best3of5" => 10.13,
-      "avg12" => 11.11,
-      "10of12" => 11.12,
-      "best10of12" => 11.13
+      "best" => best,
+      "worst" => worst,
+      "average" => avg,
+      "avg5" => null,
+      "3of5" => null,
+      "best3of5" => null,
+      "avg12" => null,
+      "10of12" => null,
+      "best10of12" => null
     };
   }
 }
