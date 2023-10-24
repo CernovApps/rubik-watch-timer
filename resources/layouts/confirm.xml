@@ -1,0 +1,8 @@
+<layout id="Confirm">
+    <label
+        id="main_label"
+        x="center"
+        y="center"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_MEDIUM" />
+</layout>

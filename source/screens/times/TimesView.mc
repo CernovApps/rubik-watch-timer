@@ -56,7 +56,16 @@ class TimesView extends WatchUi.View {
     }
 
     function selected() as Void {
-        // TODO show confirmation before removing
+        var confirmView = new ConfirmView();
+        var delegate = new ConfirmDelegate(
+            confirmView,
+            "Delete entry?",
+            method(:deleteEntryCallback)
+        );
+        WatchUi.pushView(confirmView, delegate, WatchUi.SLIDE_UP);
+    }
+
+    function deleteEntryCallback() as Void {
         times = TimesRepository.getInstance().deleteTime(cursor);
         if (cursor >= times.size()) {
             cursor = times.size() - 1;
