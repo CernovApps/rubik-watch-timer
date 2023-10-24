@@ -12,13 +12,8 @@ class StatsLoopFactory extends WatchUi.ViewLoopFactory {
     }
 
     function getView(page as Number) as Array<WatchUi.View or WatchUi.BehaviorDelegate> or Null {
-        var view = new ConfirmView();
-        var delegate = new ConfirmDelegate(
-            view,
-            "pg " + page.toString(),
-            method(:getSize)
-        );
+        var view = new StatsPageView([["best", "12.34"],["worst", "23.45"],["avg", "20.00"]]);
 
-        return [view, delegate];
+        return [view, new WatchUi.BehaviorDelegate()];
     }
 }

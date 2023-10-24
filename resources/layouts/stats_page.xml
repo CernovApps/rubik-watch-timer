@@ -1,0 +1,23 @@
+<layout id="StatsPage">
+    <label
+        id="label1"
+        text="best: -"
+        x="center"
+        y="33%"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_SMALL" />
+    <label
+        id="label2"
+        text="worst: -"
+        x="center"
+        y="45%"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_SMALL" />
+    <label
+        id="label3"
+        text="avg: -"
+        x="center"
+        y="57%"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        font="Graphics.FONT_SMALL" />
+</layout>
