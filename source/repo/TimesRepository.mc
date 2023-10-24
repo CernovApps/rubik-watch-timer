@@ -48,9 +48,42 @@ class TimesRepository {
     if (times.size() == 0) {
       return {};
     }
+    var allValuesResult = statsFor(times);
+    var resultAvg5 = null;
+    var result3of5 = null;
+    var resultAvg12 = null;
+    var result10of12 = null;
+
+    if (times.size() >= 5) {
+      var fiveResult = statsFor(times.slice(-5, null));
+      resultAvg5 = fiveResult["avg"];
+      result3of5 = fiveResult["noEdges"];
+    }
+
+    if (times.size() >= 12) {
+      var twelveResult = statsFor(times.slice(-12, null));
+      resultAvg12 = twelveResult["avg"];
+      result10of12 = twelveResult["noEdges"];
+    }
+
+    return {
+      "best" => allValuesResult["best"],
+      "worst" => allValuesResult["worst"],
+      "average" => allValuesResult["avg"],
+      "avg5" => resultAvg5,
+      "3of5" => result3of5,
+      "best3of5" => null,
+      "avg12" => resultAvg12,
+      "10of12" => result10of12,
+      "best10of12" => null
+    };
+  }
+
+  // Returns array with size 3. times.size() must be >0
+  function statsFor(times as Array<Float>) as Dictionary<String, Float> {
     var best = times[0];
     var worst = times[0];
-    var avg = 0.0;
+    var total = 0.0;
 
     for (var i = 0; i < times.size(); i++) {
       var num = times[i];
@@ -60,20 +93,10 @@ class TimesRepository {
       if (num > worst) {
         worst = num;
       }
-      avg += num;
+      total += num;
     }
-    avg /= times.size();
-
-    return {
-      "best" => best,
-      "worst" => worst,
-      "average" => avg,
-      "avg5" => null,
-      "3of5" => null,
-      "best3of5" => null,
-      "avg12" => null,
-      "10of12" => null,
-      "best10of12" => null
-    };
+    var avg = total / times.size();
+    var noEdges = (total - best - worst) / (times.size() - 2);
+    return {"best" => best, "worst" => worst, "avg" => avg, "noEdges" => noEdges};
   }
 }
