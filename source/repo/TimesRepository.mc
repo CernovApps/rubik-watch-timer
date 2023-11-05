@@ -94,7 +94,10 @@ class TimesRepository {
       total += num;
     }
     var avg = total / times.size();
-    var noEdges = (total - best - worst) / (times.size() - 2);
+    var noEdges = 0;
+    if (times.size() > 2) {
+      noEdges = (total - best - worst) / (times.size() - 2);
+    }
     return {"best" => best, "worst" => worst, "avg" => avg, "noEdges" => noEdges};
   }
 }
