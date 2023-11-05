@@ -27,16 +27,11 @@ class ResetView extends WatchUi.View {
     function onHide() as Void {
     }
 
-    var deleted = false;
-
     function selected() as Boolean {
-      if (!deleted) {
-        TimesRepository.getInstance().reset();
-        _label.setText("cleared");
-        WatchUi.requestUpdate();
-        deleted = true;
-        return true;
-      }
-      return false;
+      TimesRepository.getInstance().reset();
+      WatchUi.popView(WatchUi.SLIDE_DOWN);
+      WatchUi.showToast("cleared", {});
+      WatchUi.requestUpdate();
+      return true;
     }
 }
