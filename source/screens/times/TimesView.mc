@@ -22,10 +22,10 @@ class TimesView extends WatchUi.View {
         labels[2] = findDrawableById("time3_label");
         labels[3] = findDrawableById("time4_label");
         labels[4] = findDrawableById("time5_label");
+        fetchFromRepo();
     }
 
     function onShow() as Void {
-        fetchFromRepo();
         renderLabels();
     }
 
