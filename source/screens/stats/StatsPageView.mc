@@ -24,9 +24,9 @@ class StatsPageView extends WatchUi.View {
     }
 
     function onShow() as Void {
-        _label1.setText(_data[0][0] + ": " + _data[0][1]);
-        _label2.setText(_data[1][0] + ": " + _data[1][1]);
-        _label3.setText(_data[2][0] + ": " + _data[2][1]);
+        _label1.setText(textForIndex(0));
+        _label2.setText(textForIndex(1));
+        _label3.setText(textForIndex(2));
         WatchUi.requestUpdate();
     }
 
@@ -35,5 +35,13 @@ class StatsPageView extends WatchUi.View {
     }
 
     function onHide() as Void {
+    }
+
+    function textForIndex(index as Number) as String {
+        if (_data.size() > index) {
+            return _data[index][0] + ": " + _data[index][1];
+        } else {
+            return "";
+        }
     }
 }
