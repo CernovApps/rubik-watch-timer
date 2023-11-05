@@ -22,7 +22,7 @@
         x="center"
         y="center"
         justification="Graphics.TEXT_JUSTIFY_CENTER"
-        font="Graphics.FONT_MEDIUM" />
+        font="Graphics.FONT_LARGE" />
 
     <label
         id="your_time_label"

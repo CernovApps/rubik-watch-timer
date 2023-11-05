@@ -85,13 +85,16 @@ class TimerView extends WatchUi.View {
 
     function switchStateToBegin() as Void {
         _inspectLabel.setVisible(false);
-        _timeLabel.setVisible(false);
+        _timeLabel.setVisible(true);
         _yourTimeLabel.setVisible(false);
+
+        _timeLabel.setText("scramble");
     }
 
     function switchStateToBeginHold() as Void {
         state = BEGIN_HOLD;
         _actionLabel.setColor(Graphics.COLOR_GREEN);
+        _timeLabel.setColor(Graphics.COLOR_GREEN);
         WatchUi.requestUpdate();
     }
 
@@ -101,6 +104,7 @@ class TimerView extends WatchUi.View {
         _inspectLabel.setVisible(true);
         _timeLabel.setVisible(true);
         _timeLabel.setText(inspectionTime.format("%d"));
+        _timeLabel.setColor(Graphics.COLOR_WHITE);
         inspectionTimer = new Timer.Timer();
         inspectionTimer.start(method(:inspectionTimerCallback), 1000, true);
 
@@ -149,9 +153,9 @@ class TimerView extends WatchUi.View {
             WatchUi.requestUpdate();
 
             if (inspectionTime == 7) {
-                vibrate(50, [300]);
+                vibrate(100, [300]);
             } else if (inspectionTime == 3) {
-                vibrate(50, [200, 200, 200]);
+                vibrate(100, [200, 200, 200]);
             }
         } else {
             inspectionTimer.stop();

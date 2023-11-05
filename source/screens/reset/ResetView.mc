@@ -32,7 +32,7 @@ class ResetView extends WatchUi.View {
     function selected() as Boolean {
       if (!deleted) {
         TimesRepository.getInstance().reset();
-        _label.setText("data reset");
+        _label.setText("cleared");
         WatchUi.requestUpdate();
         deleted = true;
         return true;

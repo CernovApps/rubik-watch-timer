@@ -72,10 +72,8 @@ class TimesRepository {
       "average" => allValuesResult["avg"],
       "avg5" => resultAvg5,
       "3of5" => result3of5,
-      "best3of5" => null,
       "avg12" => resultAvg12,
-      "10of12" => result10of12,
-      "best10of12" => null
+      "10of12" => result10of12
     };
   }
 
